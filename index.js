@@ -70,13 +70,29 @@ class EyeEl {
 class ButtonCatClose {
   constructor() {
     this.El = window.document.createElement("button");
-    this.El.style.cssText = ` height: 56px;width: 56px;margin: 16px 16px;border-radius: 50%; border: 1px solid gray;background-color: transparent;cursor: pointer;`;
+    this.El.style.cssText = ` height: 48px;width: 48px;margin: 4px 4px;border-radius: 50%; background-color: transparent;cursor: pointer; font-size: 44px; display: flex; justify-content: center;  align-items: center; `;
 
-    // this.El.addEventListener("mouseover", function () {
-    //   this.El.style.backgroundColor = crimson;
-    //   "border-width': 2px; 'background-color': crimson;";
-    //   https://qna.habr.com/q/608621
-    // });
+    const txt = document.createTextNode("\u00D7");
+    const span = document.createElement("span");
+    span.appendChild(txt);
+    span.style.cssText = ` display: block;`;
+    this.El.appendChild(span);
+    this.El.classList.add("buttonCatClose");
+
+    this.El.addEventListener("mouseenter", (e) => {
+      if (!e.target.classList.contains("over")) {
+        e.target.classList.add("over");
+      }
+    });
+
+    this.El.addEventListener("mouseleave", (e) => {
+      if (e.target.classList.contains("over")) {
+        e.target.classList -= "over";
+        e.target.classList.add("buttonCatClose");
+      }
+    });
+
+    this.El.addEventListener("click", OnCloseCat);
   }
 
   print() {
@@ -91,13 +107,12 @@ const buttonCatClose = new ButtonCatClose();
 
 const body = document.querySelector("body");
 const main = document.querySelector(".cat");
-main.append(eyeLeft.print(), eyeRight.print());
+main.append(eyeLeft.print(), eyeRight.print(), buttonCatClose.print());
 main.addEventListener("mousedown", onMainClickDown);
 main.addEventListener("mouseup", onMainClickUp);
 document.addEventListener("mousemove", onMouseMove);
 
 function onMouseMove(event) {
-  // console.log(event.pageX + " : " + event.pageY);
   const { clientX, clientY } = event;
 
   const angleLeft = eyeLeft.angleCalculate({
@@ -130,4 +145,8 @@ function onMainMove(e) {
 function onMainClickUp(e) {
   document.addEventListener("mousemove", onMouseMove);
   body.removeEventListener("mousemove", onMainMove);
+}
+
+function OnCloseCat() {
+  main.style.display = "none";
 }

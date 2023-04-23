@@ -67,4 +67,19 @@ body {
 .closeCat:focus {
   border-width: 2px;
   background-color: crimson;
+  vertical-align: bottom;
 } */
+
+.buttonCatClose {
+  border: 1px solid darkgray;
+  color: darkgray;
+}
+
+.over {
+  border: 2px solid gray;
+  color: gray;
+}
+
+.hidden {
+  display: none;
+}
