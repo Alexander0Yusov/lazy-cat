@@ -85,8 +85,8 @@ class ButtonCatClose {
 }
 
 const startPointDelta = {};
-const eyeLeft = new EyeEl(173, 50);
-const eyeRight = new EyeEl(135, 59);
+const eyeLeft = new EyeEl(173, 47);
+const eyeRight = new EyeEl(137, 57);
 const buttonCatClose = new ButtonCatClose();
 
 const body = document.querySelector("body");
