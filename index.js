@@ -110,7 +110,7 @@ const main = document.querySelector(".cat");
 main.append(eyeLeft.print(), eyeRight.print(), buttonCatClose.print());
 main.addEventListener("mousedown", onMainClickDown);
 main.addEventListener("mouseup", onMainClickUp);
-document.addEventListener("mousemove", onMouseMove);
+document.addEventListener("mousemove", _.throttle(onMouseMove, 100));
 
 function onMouseMove(event) {
   const { clientX, clientY } = event;
